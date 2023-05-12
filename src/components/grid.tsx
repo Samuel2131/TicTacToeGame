@@ -11,12 +11,6 @@ export const Grid = () => {
     const [win, setWin] = useState<0 | 1 | 2 | 3>(0);
     const player1 = "X", player2 = "O";
 
-    const x = useRef<HTMLInputElement>(null);
-
-    const showPassword = () => {
-        x.current!.type = x.current!.type === "password" ? "text" : "password";
-    }
-
     const changeCell = (row: number, col: number) => {
         if(!win && matrix[row][col] === " "){
             matrix[row][col] = turn;
@@ -79,8 +73,6 @@ export const Grid = () => {
     }, [matrix]);
     return (
         <>
-        <input type="password" ref={x} />
-        <button onClick={showPassword} >Show </button>
         <p className="fs-3">Player 1 use <span style={{color: "red"}}>{player1}</span>, Player 2 use <span style={{color: "red"}}>{player2}</span></p>
         <p className="fs-3">Player {turn === "X" ? 1 : 2} it's your turn</p>
         { win === 3 ? <p className="fs-3">Draw...</p> : win === 1 ? <p className="fs-3">Player 1 win!</p> : win === 2 ? <p className="fs-3">Player 2 win!</p> : null}
